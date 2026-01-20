@@ -21,9 +21,9 @@ type Props = {
 };
 
 export default function Hero2({
-  imageSrc = "/hero-section2.jpg",
-  title = "CardiacScan Imaging",
-  subtitle = "Advanced cardiac imaging services with expert radiologists dedicated to providing accurate diagnoses and compassionate care.",
+  imageSrc = "/hero-section3.jpg",
+  title = "Cardiac Scan Imaging",
+  subtitle = "Providing mobile ultrasound imaging services wherever you are",
   cardColor = "#F7F7F7",
 }: Props) {
   const sectionPX = { xs: 2, md: 6 };
@@ -165,7 +165,7 @@ export default function Hero2({
                   transition: "all 0.3s ease",
                 }}
               >
-                Schedule Appointment
+                Partner With Us
               </Button>
               <Button
                 variant="outlined"
@@ -209,7 +209,7 @@ export default function Hero2({
           }}
         >
           <InfoCard
-            title="Cardiac CT Imaging"
+            title="Comprehensive Imaging"
             color={cardColor}
             icon={<FavoriteRoundedIcon sx={{ fontSize: { xs: 32, sm: 36, md: 42 }, color: "#0A2F4A" }} />}
             isVisible={isVisible}

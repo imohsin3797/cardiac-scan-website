@@ -33,7 +33,7 @@ export default function Hero() {
               href="/#contact-section"
               className="bg-[#C41F3E] hover:bg-[#a01731] text-white px-6 py-3 rounded-full transition-colors font-medium"
             >
-              Schedule Appointment
+              Partner With Us
             </Link>
             <Link
               href="/services"

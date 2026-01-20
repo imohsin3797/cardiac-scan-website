@@ -16,42 +16,42 @@ import { alpha } from '@mui/material/styles';
 
 const comparisonData = [
   {
-    feature: 'Board-Certified Radiologists',
+    feature: 'Board-Certified Radiologist Interpretation',
     cardiacScan: true,
     competitors: false,
   },
   {
-    feature: 'Same-Day Results Available',
+    feature: 'Same-Day Diagnostic Reports',
     cardiacScan: true,
     competitors: false,
   },
   {
-    feature: 'Latest Imaging Technology',
+    feature: 'Cardiac & Vascular Ultrasound Specialization',
+    cardiacScan: true,
+    competitors: false,
+  },
+  {
+    feature: 'Advanced Diagnostic Ultrasound Technology',
     cardiacScan: true,
     competitors: true,
   },
   {
-    feature: 'Personalized Care Plans',
+    feature: 'Flexible Scheduling',
     cardiacScan: true,
     competitors: false,
   },
   {
-    feature: 'Extended Office Hours',
+    feature: 'Weekend Availability',
     cardiacScan: true,
     competitors: false,
   },
   {
-    feature: 'No Hidden Fees',
+    feature: 'Standardized Imaging Protocols',
     cardiacScan: true,
     competitors: false,
   },
   {
-    feature: 'Insurance Accepted',
-    cardiacScan: true,
-    competitors: true,
-  },
-  {
-    feature: 'Online Appointment Booking',
+    feature: 'Electronic Image Sharing to Other Facilities (PowerShare)',
     cardiacScan: true,
     competitors: false,
   },
@@ -118,7 +118,7 @@ export default function ComparisonTable() {
               lineHeight: 1.2,
             }}
           >
-            The CardiacScan Advantage
+            The Cardiac Scan Advantage
           </Typography>
           <Typography
             sx={{
@@ -178,7 +178,7 @@ export default function ComparisonTable() {
                       bgcolor: alpha('#C41F3E', 0.2),
                     }}
                   >
-                    CardiacScan
+                    Cardiac Scan
                   </TableCell>
                   <TableCell
                     align="center"
@@ -289,7 +289,7 @@ export default function ComparisonTable() {
                 mb: 3,
               }}
             >
-              Experience the CardiacScan difference today
+              Experience the Cardiac Scan difference today
             </Typography>
             <Box
               component="a"
@@ -314,7 +314,7 @@ export default function ComparisonTable() {
                 },
               }}
             >
-              Schedule Your Appointment
+              Partner With Us
             </Box>
           </Box>
         </Box>

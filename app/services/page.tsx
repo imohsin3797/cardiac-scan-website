@@ -55,24 +55,11 @@ const AtomIcon = () => (
 
 const services = [
   {
-    title: 'Cardiac CT Scans',
-    slug: 'cardiac-ct',
+    title: 'Echocardiograms',
+    slug: 'echocardiograms',
     icon: HeartIcon,
-    shortDescription: 'Advanced CT imaging for detailed coronary artery assessment and calcium scoring',
-    image: '/ct-scan-2.webp',
-    features: [
-      'Calcium Scoring',
-      'Coronary Angiography',
-      '3D Reconstruction',
-      'Non-invasive Procedure',
-    ],
-  },
-  {
-    title: 'Echocardiography',
-    slug: 'echocardiography',
-    icon: WaveIcon,
     shortDescription: 'Real-time ultrasound imaging to evaluate heart structure and function',
-    image: '/echocardiography.jpg',
+    image: '/echocardiogram.avif',
     features: [
       'Transthoracic Echo',
       'Stress Echocardiography',
@@ -81,29 +68,185 @@ const services = [
     ],
   },
   {
-    title: 'MRI Imaging',
-    slug: 'mri-imaging',
-    icon: ScannerIcon,
-    shortDescription: 'High-resolution magnetic resonance imaging for comprehensive cardiac evaluation',
-    image: '/mri-imaging.jpg',
+    title: 'Carotids',
+    slug: 'carotids',
+    icon: WaveIcon,
+    shortDescription: 'Comprehensive carotid artery imaging for stroke risk assessment',
+    image: '/carotids.jpg',
     features: [
-      'Tissue Characterization',
-      'Functional Assessment',
-      'Perfusion Studies',
-      'No Radiation Exposure',
+      'Carotid Artery Assessment',
+      'Plaque Detection',
+      'Stroke Risk Evaluation',
+      'Non-invasive Imaging',
     ],
   },
   {
-    title: 'Nuclear Cardiology',
-    slug: 'nuclear-cardiology',
-    icon: AtomIcon,
-    shortDescription: 'Advanced nuclear imaging techniques for assessing heart blood flow and function',
-    image: '/nuclear-cardiology.webp',
+    title: 'Arterial – Upper and Lower',
+    slug: 'arterial-upper-lower',
+    icon: ScannerIcon,
+    shortDescription: 'Complete arterial evaluation for upper and lower extremities',
+    image: '/arterial.jpg',
     features: [
-      'PET Scans',
-      'SPECT Imaging',
-      'Myocardial Perfusion',
-      'Viability Studies',
+      'Upper Extremity Assessment',
+      'Lower Extremity Evaluation',
+      'Blood Flow Analysis',
+      'PAD Screening',
+    ],
+  },
+  {
+    title: 'Venous – Upper and Lower',
+    slug: 'venous-upper-lower',
+    icon: AtomIcon,
+    shortDescription: 'Comprehensive venous imaging for DVT detection and assessment',
+    image: '/venous.jpg',
+    features: [
+      'Deep Vein Thrombosis Screening',
+      'Venous Mapping',
+      'Compression Ultrasound',
+      'Complete Venous Assessment',
+    ],
+  },
+  {
+    title: 'Venous Insufficiency',
+    slug: 'venous-insufficiency',
+    icon: HeartIcon,
+    shortDescription: 'Specialized imaging for venous insufficiency and varicose veins',
+    image: '/venousinsuffiency.jpg',
+    features: [
+      'Valve Function Assessment',
+      'Reflux Evaluation',
+      'Varicose Vein Mapping',
+      'Treatment Planning',
+    ],
+  },
+  {
+    title: 'Abdominal Aorta',
+    slug: 'abdominal-aorta',
+    icon: WaveIcon,
+    shortDescription: 'Detailed abdominal aorta imaging for aneurysm detection',
+    image: '/abdominalaorta.webp',
+    features: [
+      'Aortic Diameter Measurement',
+      'Aneurysm Detection',
+      'Wall Assessment',
+      'Risk Evaluation',
+    ],
+  },
+  {
+    title: 'Abdominal Aorta Aneurysm Screening',
+    slug: 'aaa-screening',
+    icon: ScannerIcon,
+    shortDescription: 'Preventive screening for abdominal aortic aneurysms',
+    image: '/abdominalaortascreening.jpg',
+    features: [
+      'Early Detection Screening',
+      'Preventive Assessment',
+      'Risk Factor Evaluation',
+      'Follow-up Monitoring',
+    ],
+  },
+  {
+    title: 'Renal Artery Doppler',
+    slug: 'renal-artery-doppler',
+    icon: AtomIcon,
+    shortDescription: 'Doppler ultrasound for renal artery stenosis detection',
+    image: '/renalarterydoppler.png',
+    features: [
+      'Renal Artery Stenosis Detection',
+      'Blood Flow Measurement',
+      'Hypertension Evaluation',
+      'Kidney Function Assessment',
+    ],
+  },
+  {
+    title: 'Ankle-Brachial Index (ABI)',
+    slug: 'abi',
+    icon: HeartIcon,
+    shortDescription: 'Non-invasive testing for peripheral arterial disease',
+    image: '/anklebrachial.jpg',
+    features: [
+      'PAD Screening',
+      'Non-invasive Testing',
+      'Circulation Assessment',
+      'Cardiovascular Risk Evaluation',
+    ],
+  },
+  {
+    title: 'Abdominal – Full and Limited',
+    slug: 'abdominal',
+    icon: WaveIcon,
+    shortDescription: 'Comprehensive and focused abdominal ultrasound examinations',
+    image: '/abdominalfullandlimited.jpg',
+    features: [
+      'Complete Organ Assessment',
+      'Focused Examinations',
+      'Pathology Detection',
+      'Comprehensive Evaluation',
+    ],
+  },
+  {
+    title: 'Thyroid',
+    slug: 'thyroid',
+    icon: ScannerIcon,
+    shortDescription: 'Detailed thyroid gland imaging and nodule evaluation',
+    image: '/thyroid.jpg',
+    features: [
+      'Thyroid Nodule Evaluation',
+      'Gland Size Assessment',
+      'Structural Abnormalities',
+      'Guided Biopsy Support',
+    ],
+  },
+  {
+    title: 'Renal',
+    slug: 'renal',
+    icon: AtomIcon,
+    shortDescription: 'Complete kidney imaging for stones, masses, and abnormalities',
+    image: '/renal.jpg',
+    features: [
+      'Kidney Size and Structure',
+      'Stone Detection',
+      'Hydronephrosis Assessment',
+      'Mass Evaluation',
+    ],
+  },
+  {
+    title: 'Bladder',
+    slug: 'bladder',
+    icon: HeartIcon,
+    shortDescription: 'Bladder ultrasound for volume and structural assessment',
+    image: '/bladderstock.webp',
+    features: [
+      'Bladder Volume Measurement',
+      'Wall Thickness Assessment',
+      'Mass Detection',
+      'Post-void Residual',
+    ],
+  },
+  {
+    title: 'Male Pelvic – Transabdominal',
+    slug: 'male-pelvic',
+    icon: WaveIcon,
+    shortDescription: 'Comprehensive male pelvic imaging via transabdominal approach',
+    image: '/malepelvic.jpg',
+    features: [
+      'Prostate Evaluation',
+      'Bladder Assessment',
+      'Pelvic Organ Imaging',
+      'Non-invasive Examination',
+    ],
+  },
+  {
+    title: 'Female Pelvic – Transabdominal',
+    slug: 'female-pelvic',
+    icon: ScannerIcon,
+    shortDescription: 'Complete female pelvic ultrasound for uterus and ovaries',
+    image: '/femalepelvic.jpg',
+    features: [
+      'Uterus and Ovary Imaging',
+      'Fibroid Detection',
+      'Cyst Evaluation',
+      'Comprehensive Pelvic Assessment',
     ],
   },
 ];
@@ -172,7 +315,7 @@ export default function ServicesPage() {
                 mx: 'auto',
               }}
             >
-              CardiacScan Imaging redefines cardiac care by bringing expert diagnostics directly to you. Our innovative approach ensures comprehensive, patient-centered treatment with seamless coordination and advanced technology.
+              Cardiac Scan Imaging delivers on-site diagnostic imaging solutions to support healthcare providers and their patients. From echocardiograms and vascular studies to general ultrasound exams, our experienced team ensures accurate, timely results, hassle-free coordination, and compassionate care—right where it's needed most.
             </Typography>
           </Box>
 
@@ -189,17 +332,17 @@ export default function ServicesPage() {
               {
                 icon: VerifiedRoundedIcon,
                 title: 'Board-Certified Experts',
-                description: 'Every diagnostic is performed by fellowship-trained radiologists specializing in cardiac imaging, ensuring the highest level of expertise and accuracy.',
+                description: 'Our fellowship-trained radiologists and experienced sonographers deliver accurate diagnostics you can trust, supporting confident clinical decisions for your practice.',
               },
               {
                 icon: SpeedRoundedIcon,
-                title: 'Rapid Results',
-                description: 'Advanced imaging protocols and streamlined workflows deliver same-day results, enabling faster treatment decisions and better patient outcomes.',
+                title: 'Rapid Turnaround',
+                description: 'Streamlined workflows and efficient protocols deliver 24-48 hour results, helping your practice maintain momentum and keep patients on track.',
               },
               {
                 icon: SupportAgentRoundedIcon,
-                title: 'Patient-Centered Care',
-                description: 'Cutting-edge imaging equipment and personalized service delivered in a comfortable environment, ensuring you receive exceptional care throughout your visit.',
+                title: 'Turnkey Partnership',
+                description: 'We handle scheduling, equipment, staffing, and reporting—seamlessly integrating with your practice so you can focus on what matters most: your patients.',
               },
             ].map((item, index) => {
               const IconComponent = item.icon;
@@ -301,7 +444,7 @@ export default function ServicesPage() {
                 mx: 'auto',
               }}
             >
-              Comprehensive cardiac imaging solutions with state-of-the-art technology and expert care
+              Comprehensive diagnostic imaging solutions, including cardiac, vascular, and general ultrasound exams, delivered with advanced technology and expert care.
             </Typography>
           </Box>
 
@@ -491,7 +634,7 @@ export default function ServicesPage() {
               mb: 3,
             }}
           >
-            Ready to Schedule Your Imaging?
+            Ready to Partner With Us?
           </Typography>
           <Typography
             sx={{
@@ -501,7 +644,7 @@ export default function ServicesPage() {
               lineHeight: 1.7,
             }}
           >
-            Our team is here to provide you with the highest quality cardiac imaging services. Contact us today to schedule your appointment.
+            Bring high-quality diagnostic imaging directly to your practice. Contact us today to learn how we can support your clinic with reliable, convenient, and professional imaging services.
           </Typography>
           <Button
             component={Link}

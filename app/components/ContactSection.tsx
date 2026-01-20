@@ -8,36 +8,21 @@ import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import { alpha } from '@mui/material/styles';
+import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
-import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
 
-const contactInfo = [
-  {
-    icon: PhoneRoundedIcon,
-    title: 'Phone',
-    content: '(555) 123-4567',
-    link: 'tel:+15551234567'
-  },
-  {
-    icon: EmailRoundedIcon,
-    title: 'Email',
-    content: 'info@cardiacscan.com',
-    link: 'mailto:info@cardiacscan.com'
-  },
-  {
-    icon: LocationOnRoundedIcon,
-    title: 'Address',
-    content: '123 Medical Center Dr, Suite 100\nCity, State 12345',
-    link: null
-  },
-  {
-    icon: AccessTimeRoundedIcon,
-    title: 'Hours',
-    content: 'Mon-Fri: 8:00 AM - 6:00 PM\nSat: 9:00 AM - 2:00 PM',
-    link: null
-  }
+const serviceAreas = [
+  { city: 'Orlando', zip: '32828', lat: 28.5383, lng: -81.1692 },
+  { city: 'Tampa', zip: '33647', lat: 28.1499, lng: -82.3513 },
+  { city: 'St. Petersburg', zip: '33709', lat: 27.8147, lng: -82.7379 },
+  { city: 'Kissimmee', zip: '34741', lat: 28.2920, lng: -81.4076 },
+  { city: 'Brandon', zip: '33511', lat: 27.9378, lng: -82.2859 },
+  { city: 'Winter Garden', zip: '34787', lat: 28.5653, lng: -81.5912 },
+  { city: 'Valrico', zip: '33594', lat: 27.9370, lng: -82.2362 },
+  { city: 'Davenport', zip: '33837', lat: 28.1614, lng: -81.6017 },
+  { city: 'Altamonte Springs', zip: '32701', lat: 28.6611, lng: -81.3656 },
+  { city: 'Ruskin', zip: '33570', lat: 27.7209, lng: -82.4332 },
 ];
 
 export default function ContactSection() {
@@ -171,7 +156,7 @@ export default function ContactSection() {
               lineHeight: 1.6,
             }}
           >
-            Have questions? We're here to help. Reach out to schedule your appointment today.
+            Have questions about integrating imaging services into your practice? Contact our team to explore how we can help you enhance your practice with expert diagnostic imaging and seamless workflow support.
           </Typography>
         </Box>
 
@@ -385,7 +370,7 @@ export default function ContactSection() {
             </Box>
           </Box>
 
-          {/* Right: Contact Information */}
+          {/* Right: Service Area Map */}
           <Box
             sx={{
               opacity: isVisible ? 1 : 0,
@@ -393,95 +378,198 @@ export default function ContactSection() {
               transition: 'opacity 1000ms ease-out 400ms, transform 1000ms ease-out 400ms',
             }}
           >
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-              {contactInfo.map((info, index) => {
-                const IconComponent = info.icon;
-                const content = info.link ? (
-                  <Box
-                    component="a"
-                    href={info.link}
-                    sx={{
-                      color: '#0A2F4A',
-                      textDecoration: 'none',
-                      '&:hover': {
-                        color: '#C41F3E',
-                      },
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: { xs: 15, sm: 16 },
-                        lineHeight: 1.6,
-                        whiteSpace: 'pre-line',
-                      }}
-                    >
-                      {info.content}
-                    </Typography>
-                  </Box>
-                ) : (
-                  <Typography
-                    sx={{
-                      fontSize: { xs: 15, sm: 16 },
-                      color: '#0A2F4A',
-                      lineHeight: 1.6,
-                      whiteSpace: 'pre-line',
-                    }}
-                  >
-                    {info.content}
-                  </Typography>
-                );
+            {/* Service Area Title */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
+              <LocationOnRoundedIcon sx={{ fontSize: 28, color: '#C41F3E' }} />
+              <Typography
+                sx={{
+                  fontSize: { xs: 20, sm: 24 },
+                  fontWeight: 700,
+                  color: '#0A2F4A',
+                }}
+              >
+                Service Area
+              </Typography>
+            </Box>
 
-                return (
+            {/* Map Container */}
+            <Box
+              sx={{
+                borderRadius: '16px',
+                overflow: 'hidden',
+                border: '3px solid #0A2F4A',
+                mb: 3,
+                height: { xs: 250, sm: 280 },
+              }}
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d900000!2d-81.75!3d28.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Service Area Map - Central Florida"
+              />
+            </Box>
+
+            {/* Service Areas List */}
+            <Box
+              sx={{
+                bgcolor: '#ffffff',
+                borderRadius: '16px',
+                border: '2px solid',
+                borderColor: alpha('#0A2F4A', 0.1),
+                p: 2.5,
+                mb: 2,
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: { xs: 13, sm: 14 },
+                  fontWeight: 700,
+                  color: '#0A2F4A',
+                  mb: 1.5,
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                }}
+              >
+                Areas We Serve
+              </Typography>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr 1fr' },
+                  gap: 1,
+                }}
+              >
+                {serviceAreas.map((area, index) => (
                   <Box
                     key={index}
                     sx={{
                       display: 'flex',
-                      gap: 2,
-                      p: 3,
-                      bgcolor: '#ffffff',
-                      borderRadius: '16px',
-                      border: '2px solid',
-                      borderColor: alpha('#0A2F4A', 0.1),
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        borderColor: '#C41F3E',
-                        transform: 'translateY(-4px)',
-                        boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
-                      },
+                      alignItems: 'center',
+                      gap: 1,
                     }}
                   >
                     <Box
                       sx={{
-                        width: 48,
-                        height: 48,
-                        borderRadius: '12px',
-                        bgcolor: alpha('#C41F3E', 0.1),
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        width: 6,
+                        height: 6,
+                        borderRadius: '50%',
+                        bgcolor: '#C41F3E',
                         flexShrink: 0,
                       }}
+                    />
+                    <Typography
+                      sx={{
+                        fontSize: { xs: 12, sm: 13 },
+                        color: '#0A2F4A',
+                        fontWeight: 500,
+                      }}
                     >
-                      <IconComponent sx={{ fontSize: 28, color: '#C41F3E' }} />
-                    </Box>
-                    <Box>
+                      {area.city}
                       <Typography
+                        component="span"
                         sx={{
-                          fontSize: { xs: 14, sm: 15 },
-                          fontWeight: 700,
+                          fontSize: { xs: 10, sm: 11 },
                           color: '#7A7A7A',
-                          mb: 0.5,
-                          textTransform: 'uppercase',
-                          letterSpacing: 0.5,
+                          ml: 0.5,
                         }}
                       >
-                        {info.title}
+                        ({area.zip})
                       </Typography>
-                      {content}
-                    </Box>
+                    </Typography>
                   </Box>
-                );
-              })}
+                ))}
+              </Box>
+            </Box>
+
+          </Box>
+        </Box>
+
+        {/* Contact Info - Centered below the grid */}
+        <Box
+          sx={{
+            mt: 4,
+            display: 'flex',
+            justifyContent: 'center',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 1000ms ease-out 500ms, transform 1000ms ease-out 500ms',
+          }}
+        >
+          <Box
+            sx={{
+              bgcolor: '#ffffff',
+              borderRadius: '16px',
+              border: '2px solid',
+              borderColor: alpha('#0A2F4A', 0.1),
+              p: 2.5,
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              gap: { xs: 2, sm: 4 },
+              alignItems: 'center',
+            }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box
+                sx={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: '10px',
+                  bgcolor: alpha('#C41F3E', 0.1),
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <PhoneRoundedIcon sx={{ fontSize: 20, color: '#C41F3E' }} />
+              </Box>
+              <Box
+                component="a"
+                href="tel:407-801-6575"
+                sx={{
+                  fontSize: { xs: 14, sm: 15 },
+                  color: '#0A2F4A',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  '&:hover': { color: '#C41F3E' },
+                }}
+              >
+                (407) 801-6575
+              </Box>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box
+                sx={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: '10px',
+                  bgcolor: alpha('#C41F3E', 0.1),
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <EmailRoundedIcon sx={{ fontSize: 20, color: '#C41F3E' }} />
+              </Box>
+              <Box
+                component="a"
+                href="mailto:info@cardiacscanimaging.com"
+                sx={{
+                  fontSize: { xs: 14, sm: 15 },
+                  color: '#0A2F4A',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  '&:hover': { color: '#C41F3E' },
+                }}
+              >
+                info@cardiacscanimaging.com
+              </Box>
             </Box>
           </Box>
         </Box>

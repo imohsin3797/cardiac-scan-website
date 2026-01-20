@@ -31,21 +31,10 @@ const AtomIcon = () => (
 
 const services = [
   {
-    title: "Cardiac CT Scans",
-    slug: "cardiac-ct",
+    title: "Echocardiograms",
+    slug: "echocardiograms",
     icon: HeartIcon,
-    image: "/ct-scan.jpg",
-    description: [
-      "Calcium scoring",
-      "Coronary angiography",
-      "Advanced 3D imaging",
-      "Quick, non-invasive procedures"
-    ]
-  },
-  {
-    title: "Echocardiography",
-    slug: "echocardiography",
-    icon: WaveIcon,
+    image: "/echocardiography.jpg",
     description: [
       "Transthoracic echo",
       "Stress echocardiography",
@@ -54,25 +43,157 @@ const services = [
     ]
   },
   {
-    title: "MRI Imaging",
-    slug: "mri-imaging",
-    icon: ScannerIcon,
+    title: "Carotids",
+    slug: "carotids",
+    icon: WaveIcon,
     description: [
-      "Cardiac MRI scans",
-      "Tissue characterization",
-      "Function assessment",
-      "High-resolution imaging"
+      "Carotid artery assessment",
+      "Plaque detection",
+      "Stroke risk evaluation",
+      "Non-invasive imaging"
     ]
   },
   {
-    title: "Nuclear Cardiology",
-    slug: "nuclear-cardiology",
+    title: "Arterial – Upper and Lower",
+    slug: "arterial-upper-lower",
+    icon: ScannerIcon,
+    description: [
+      "Upper extremity assessment",
+      "Lower extremity evaluation",
+      "Blood flow analysis",
+      "PAD screening"
+    ]
+  },
+  {
+    title: "Venous – Upper and Lower",
+    slug: "venous-upper-lower",
     icon: AtomIcon,
     description: [
-      "PET scans",
-      "SPECT imaging",
-      "Myocardial perfusion",
-      "Comprehensive diagnostics"
+      "Deep vein thrombosis screening",
+      "Venous mapping",
+      "Compression ultrasound",
+      "Complete venous assessment"
+    ]
+  },
+  {
+    title: "Venous Insufficiency",
+    slug: "venous-insufficiency",
+    icon: HeartIcon,
+    description: [
+      "Valve function assessment",
+      "Reflux evaluation",
+      "Varicose vein mapping",
+      "Treatment planning"
+    ]
+  },
+  {
+    title: "Abdominal Aorta",
+    slug: "abdominal-aorta",
+    icon: WaveIcon,
+    description: [
+      "Aortic diameter measurement",
+      "Aneurysm detection",
+      "Wall assessment",
+      "Risk evaluation"
+    ]
+  },
+  {
+    title: "Abdominal Aorta Aneurysm Screening",
+    slug: "aaa-screening",
+    icon: ScannerIcon,
+    description: [
+      "Early detection screening",
+      "Preventive assessment",
+      "Risk factor evaluation",
+      "Follow-up monitoring"
+    ]
+  },
+  {
+    title: "Renal Artery Doppler",
+    slug: "renal-artery-doppler",
+    icon: AtomIcon,
+    description: [
+      "Renal artery stenosis detection",
+      "Blood flow measurement",
+      "Hypertension evaluation",
+      "Kidney function assessment"
+    ]
+  },
+  {
+    title: "Ankle-Brachial Index (ABI)",
+    slug: "abi",
+    icon: HeartIcon,
+    description: [
+      "PAD screening",
+      "Non-invasive testing",
+      "Circulation assessment",
+      "Cardiovascular risk evaluation"
+    ]
+  },
+  {
+    title: "Abdominal – Full and Limited",
+    slug: "abdominal",
+    icon: WaveIcon,
+    description: [
+      "Complete organ assessment",
+      "Focused examinations",
+      "Pathology detection",
+      "Comprehensive evaluation"
+    ]
+  },
+  {
+    title: "Thyroid",
+    slug: "thyroid",
+    icon: ScannerIcon,
+    description: [
+      "Thyroid nodule evaluation",
+      "Gland size assessment",
+      "Structural abnormalities",
+      "Guided biopsy support"
+    ]
+  },
+  {
+    title: "Renal",
+    slug: "renal",
+    icon: AtomIcon,
+    description: [
+      "Kidney size and structure",
+      "Stone detection",
+      "Hydronephrosis assessment",
+      "Mass evaluation"
+    ]
+  },
+  {
+    title: "Bladder",
+    slug: "bladder",
+    icon: HeartIcon,
+    description: [
+      "Bladder volume measurement",
+      "Wall thickness assessment",
+      "Mass detection",
+      "Post-void residual"
+    ]
+  },
+  {
+    title: "Male Pelvic – Transabdominal",
+    slug: "male-pelvic",
+    icon: WaveIcon,
+    description: [
+      "Prostate evaluation",
+      "Bladder assessment",
+      "Pelvic organ imaging",
+      "Non-invasive examination"
+    ]
+  },
+  {
+    title: "Female Pelvic – Transabdominal",
+    slug: "female-pelvic",
+    icon: ScannerIcon,
+    description: [
+      "Uterus and ovary imaging",
+      "Fibroid detection",
+      "Cyst evaluation",
+      "Comprehensive pelvic assessment"
     ]
   }
 ];
@@ -129,8 +250,8 @@ export default function Services() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.slice(0, 6).map((service, index) => {
             const IconComponent = service.icon;
             return (
             <div
@@ -172,6 +293,23 @@ export default function Services() {
             </div>
           );
           })}
+        </div>
+
+        {/* See more button */}
+        <div
+          className={`flex justify-center mt-10 ${
+            isVisible
+              ? 'opacity-100 translate-y-0 transition-all duration-1000 ease-out'
+              : 'opacity-0 translate-y-12'
+          }`}
+          style={isVisible ? { transitionDelay: `${6 * 100}ms` } : {}}
+        >
+          <Link
+            href="/services"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#0A2F4A] text-[#0A2F4A] font-semibold text-sm hover:bg-[#0A2F4A] hover:text-white transition-colors"
+          >
+            See More Services
+          </Link>
         </div>
       </div>
     </section>

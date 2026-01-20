@@ -38,7 +38,7 @@ export default function Footer() {
             <Link href="/">
               <Image
                 src="/cardiac-scan-logo3.png"
-                alt="CardiacScan Imaging Logo"
+                alt="Cardiac Scan Imaging Logo"
                 width={180}
                 height={54}
                 className="h-auto mb-4"
@@ -53,7 +53,7 @@ export default function Footer() {
                 mt: 2,
               }}
             >
-              Advanced cardiac imaging services with expert radiologists dedicated to providing accurate diagnoses and compassionate care.
+              Providing mobile ultrasound imaging services wherever you are
             </Typography>
 
             {/* Social Media Icons */}
@@ -203,16 +203,16 @@ export default function Footer() {
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                Cardiac CT Scans
+                Echocardiograms
               </Typography>
               <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                Echocardiography
+                Carotids
               </Typography>
               <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                MRI Imaging
+                Arterial – Upper and Lower
               </Typography>
               <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                Nuclear Cardiology
+                Venous – Upper and Lower
               </Typography>
             </Box>
           </Box>
@@ -258,7 +258,7 @@ export default function Footer() {
           }}
         >
           <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.6)', textAlign: { xs: 'center', sm: 'left' } }}>
-            © {currentYear} CardiacScan Imaging. All rights reserved.
+            © {currentYear} Cardiac Scan Imaging. All rights reserved.
           </Typography>
           <Box sx={{ display: 'flex', gap: 3 }}>
             <Link
@@ -273,19 +273,6 @@ export default function Footer() {
               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'}
             >
               Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              style={{
-                color: 'rgba(255, 255, 255, 0.6)',
-                textDecoration: 'none',
-                fontSize: 14,
-                transition: 'color 0.3s',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#fff'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'}
-            >
-              Terms of Service
             </Link>
           </Box>
         </Box>
