@@ -62,9 +62,7 @@ const services = [
     image: '/echocardiogram.avif',
     features: [
       'Transthoracic Echo',
-      'Stress Echocardiography',
       'Doppler Imaging',
-      'Real-time Monitoring',
     ],
   },
   {
@@ -101,7 +99,6 @@ const services = [
     image: '/venous.jpg',
     features: [
       'Deep Vein Thrombosis Screening',
-      'Venous Mapping',
       'Compression Ultrasound',
       'Complete Venous Assessment',
     ],
@@ -115,8 +112,6 @@ const services = [
     features: [
       'Valve Function Assessment',
       'Reflux Evaluation',
-      'Varicose Vein Mapping',
-      'Treatment Planning',
     ],
   },
   {
@@ -194,7 +189,6 @@ const services = [
       'Thyroid Nodule Evaluation',
       'Gland Size Assessment',
       'Structural Abnormalities',
-      'Guided Biopsy Support',
     ],
   },
   {
@@ -457,7 +451,6 @@ export default function ServicesPage() {
             }}
           >
             {services.map((service, index) => {
-              const IconComponent = service.icon;
               return (
                 <Paper
                   key={index}
@@ -496,25 +489,6 @@ export default function ServicesPage() {
                       fill
                       style={{ objectFit: 'cover' }}
                     />
-                    {/* Icon Overlay */}
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: 20,
-                        right: 20,
-                        width: 60,
-                        height: 60,
-                        borderRadius: '16px',
-                        bgcolor: alpha('#fff', 0.95),
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                        color: '#C41F3E',
-                      }}
-                    >
-                      <IconComponent />
-                    </Box>
                   </Box>
 
                   {/* Content Section */}

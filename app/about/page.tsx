@@ -460,7 +460,7 @@ export default function AboutPage() {
                 mb: 3,
               }}
             >
-              Our team is dedicated to delivering exceptional patient care and is passionate about early detection and accurate diagnosis. With an average of over 8 years of experience, our Board-Certified Ultrasound Technologists bring the highest level of quality, professionalism, and compassion to every patient encounter.
+              Our team is dedicated to delivering exceptional patient care and is passionate about early detection and accurate diagnosis. With an average of over 8 years of experience, our sonographers bring the highest level of quality, professionalism, and compassion to every patient encounter.
             </Typography>
           </Box>
 
@@ -493,7 +493,20 @@ export default function AboutPage() {
                     lineHeight: 1.8,
                   }}
                 >
-                  <strong>Board-Certified Ultrasound Sonographers/Technicians</strong> skilled in performing cardiac, vascular, and general ultrasound exams, including echocardiograms, carotid studies, arterial and venous imaging, abdominal scans, pelvic exams, thyroid and renal imaging, and more.
+                  <strong>Registered Ultrasound Sonographers</strong> skilled in performing cardiac, vascular, and general ultrasound exams, including echocardiograms, carotid studies, arterial and venous imaging, abdominal scans, pelvic exams, thyroid and renal imaging, and more.
+                </Typography>
+              </Box>
+
+              <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+                <CheckCircleRoundedIcon sx={{ color: '#C41F3E', fontSize: 24, flexShrink: 0, mt: 0.5 }} />
+                <Typography
+                  sx={{
+                    fontSize: { xs: 14, sm: 15 },
+                    color: '#7A7A7A',
+                    lineHeight: 1.8,
+                  }}
+                >
+                  <strong>Board-Certified Radiologists and Cardiologists</strong> for accurate image interpretation.
                 </Typography>
               </Box>
 

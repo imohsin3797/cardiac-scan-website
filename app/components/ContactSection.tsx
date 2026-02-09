@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -12,17 +13,36 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 
+const ServiceAreaMap = dynamic(() => import('./ServiceAreaMap'), {
+  ssr: false,
+  loading: () => (
+    <Box
+      sx={{
+        width: '100%',
+        height: { xs: 280, sm: 320 },
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bgcolor: '#e8e8e8',
+        borderRadius: '16px',
+      }}
+    >
+      <CircularProgress sx={{ color: '#0A2F4A' }} />
+    </Box>
+  ),
+});
+
 const serviceAreas = [
-  { city: 'Orlando', zip: '32828', lat: 28.5383, lng: -81.1692 },
-  { city: 'Tampa', zip: '33647', lat: 28.1499, lng: -82.3513 },
-  { city: 'St. Petersburg', zip: '33709', lat: 27.8147, lng: -82.7379 },
-  { city: 'Kissimmee', zip: '34741', lat: 28.2920, lng: -81.4076 },
-  { city: 'Brandon', zip: '33511', lat: 27.9378, lng: -82.2859 },
-  { city: 'Winter Garden', zip: '34787', lat: 28.5653, lng: -81.5912 },
-  { city: 'Valrico', zip: '33594', lat: 27.9370, lng: -82.2362 },
-  { city: 'Davenport', zip: '33837', lat: 28.1614, lng: -81.6017 },
-  { city: 'Altamonte Springs', zip: '32701', lat: 28.6611, lng: -81.3656 },
-  { city: 'Ruskin', zip: '33570', lat: 27.7209, lng: -82.4332 },
+  { city: 'Orlando', zip: '32828' },
+  { city: 'Tampa', zip: '33647' },
+  { city: 'St. Petersburg', zip: '33709' },
+  { city: 'Kissimmee', zip: '34741' },
+  { city: 'Brandon', zip: '33511' },
+  { city: 'Winter Garden', zip: '34787' },
+  { city: 'Valrico', zip: '33594' },
+  { city: 'Davenport', zip: '33837' },
+  { city: 'Altamonte Springs', zip: '32701' },
+  { city: 'Ruskin', zip: '33570' },
 ];
 
 export default function ContactSection() {
@@ -160,7 +180,7 @@ export default function ContactSection() {
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', lg: '1fr 1fr' }, gap: { xs: 6, lg: 8 } }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', lg: '1fr 1fr' }, gap: { xs: 6, lg: 8 }, alignItems: 'center' }}>
           {/* Left: Contact Form */}
           <Box
             component="form"
@@ -399,19 +419,10 @@ export default function ContactSection() {
                 overflow: 'hidden',
                 border: '3px solid #0A2F4A',
                 mb: 3,
-                height: { xs: 250, sm: 280 },
+                height: { xs: 320, sm: 380 },
               }}
             >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d900000!2d-81.75!3d28.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Service Area Map - Central Florida"
-              />
+              <ServiceAreaMap />
             </Box>
 
             {/* Service Areas List */}
@@ -485,6 +496,19 @@ export default function ContactSection() {
                 ))}
               </Box>
             </Box>
+
+            {/* Message below map */}
+            <Typography
+              sx={{
+                fontSize: { xs: 14, sm: 15 },
+                color: '#7A7A7A',
+                fontStyle: 'italic',
+                textAlign: 'center',
+                lineHeight: 1.6,
+              }}
+            >
+              Not in your area yet? Reach out to discuss whether we may be on our way to you!
+            </Typography>
 
           </Box>
         </Box>

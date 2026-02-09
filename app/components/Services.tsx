@@ -37,9 +37,7 @@ const services = [
     image: "/echocardiography.jpg",
     description: [
       "Transthoracic echo",
-      "Stress echocardiography",
-      "Doppler imaging",
-      "Real-time heart monitoring"
+      "Doppler imaging"
     ]
   },
   {
@@ -70,7 +68,6 @@ const services = [
     icon: AtomIcon,
     description: [
       "Deep vein thrombosis screening",
-      "Venous mapping",
       "Compression ultrasound",
       "Complete venous assessment"
     ]
@@ -81,9 +78,7 @@ const services = [
     icon: HeartIcon,
     description: [
       "Valve function assessment",
-      "Reflux evaluation",
-      "Varicose vein mapping",
-      "Treatment planning"
+      "Reflux evaluation"
     ]
   },
   {
@@ -148,8 +143,7 @@ const services = [
     description: [
       "Thyroid nodule evaluation",
       "Gland size assessment",
-      "Structural abnormalities",
-      "Guided biopsy support"
+      "Structural abnormalities"
     ]
   },
   {
@@ -274,7 +268,7 @@ export default function Services() {
               </h3>
 
               {/* Description with red bullets */}
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2">
                 {service.description.map((item, idx) => (
                   <li key={idx} className="flex items-baseline gap-2 text-[#0A2F4A]">
                     <span className="text-[#C41F3E] flex-shrink-0">•</span>
@@ -282,14 +276,6 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-
-              {/* Button */}
-              <Link
-                href={`/services/${service.slug}`}
-                className="inline-block w-full text-center border-2 border-[#0A2F4A] text-[#0A2F4A] hover:bg-[#0A2F4A] hover:text-white px-4 py-2 rounded-full transition-colors font-medium text-sm"
-              >
-                Learn More
-              </Link>
             </div>
           );
           })}

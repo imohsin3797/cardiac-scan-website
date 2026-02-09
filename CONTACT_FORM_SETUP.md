@@ -18,12 +18,12 @@ Create a `.env.local` file in the root directory of your project with the follow
 # SendGrid Configuration
 SENDGRID_API_KEY=your_sendgrid_api_key_here
 SENDGRID_FROM_EMAIL=noreply@yourdomain.com
-ADMIN_EMAIL=your_admin_email@example.com
+TO_EMAIL=your_admin_email@example.com
 
-# Quo API Configuration
+# Quo API Configuration (formerly OpenPhone)
 QUO_API_KEY=your_quo_api_key_here
-QUO_FROM_PHONE_NUMBER=+1234567890
-NOTIFICATION_PHONE_NUMBER=+1987654321
+QUO_FROM_NUMBER=+14078016575
+QUO_TO_NUMBER=+13176145209
 ```
 
 ### 3. Get SendGrid API Key
@@ -49,17 +49,24 @@ NOTIFICATION_PHONE_NUMBER=+1987654321
 
 ### 5. Get Quo API Credentials
 
-1. Visit https://www.quoapi.com and create an account
-2. Navigate to your dashboard and find your API credentials
-3. Copy your API key and paste it as `QUO_API_KEY` in your `.env.local` file
-4. Get your Quo phone number (the number you registered with Quo to send SMS from) and set it as `QUO_FROM_PHONE_NUMBER` (include country code, e.g., +1234567890)
-5. Set `NOTIFICATION_PHONE_NUMBER` to the phone number where you want to receive SMS notifications (include country code, e.g., +1987654321)
+Quo (formerly OpenPhone) provides SMS messaging capabilities through their API.
 
-**Note:** Quo API may require account verification or credits for SMS sending. The `QUO_FROM_PHONE_NUMBER` is the sender number provided by Quo.
+1. Visit https://www.quo.com or https://www.openphone.com and create an account
+2. Navigate to Settings → Developers → API Keys in your Quo dashboard
+3. Generate a new API key and copy it - paste it as `QUO_API_KEY` in your `.env.local` file
+4. Get your Quo phone number (the number you registered with Quo to send SMS from) and set it as `QUO_FROM_NUMBER` in E.164 format (e.g., +14078016575)
+5. Set `QUO_TO_NUMBER` to the phone number where you want to receive SMS notifications in E.164 format (e.g., +13176145209)
+
+**Important Notes:**
+- The API endpoint is: `https://api.openphone.com/v1/messages`
+- Phone numbers must be in E.164 format (include country code with +)
+- The `QUO_FROM_NUMBER` must be a phone number registered in your Quo account
+- Quo API uses simple Bearer token authentication (no "Bearer" prefix needed in header)
+- Successfully sent messages will have a status of "queued" initially
 
 ### 6. Update Admin Email
 
-Set `ADMIN_EMAIL` in your `.env.local` file to the email address where you want to receive form submissions.
+Set `TO_EMAIL` in your `.env.local` file to the email address where you want to receive form submissions.
 
 ### 7. Test the Form
 
@@ -81,10 +88,10 @@ Set `ADMIN_EMAIL` in your `.env.local` file to the email address where you want 
 |----------|-------------|---------|
 | `SENDGRID_API_KEY` | Your SendGrid API key | `SG.xxxxxxxxxx` |
 | `SENDGRID_FROM_EMAIL` | Verified sender email | `noreply@cardiacscan.com` |
-| `ADMIN_EMAIL` | Where form submissions are sent | `admin@cardiacscan.com` |
-| `QUO_API_KEY` | Your Quo API key | `quo_xxxxxxxxxx` |
-| `QUO_FROM_PHONE_NUMBER` | Quo sender phone number | `+15551234567` |
-| `NOTIFICATION_PHONE_NUMBER` | Phone for SMS alerts (recipient) | `+15559876543` |
+| `TO_EMAIL` | Where form submissions are sent | `admin@cardiacscan.com` |
+| `QUO_API_KEY` | Your Quo API key | `5XBy1SutLn9FT8JzXeadyMzxjj2Lxj59` |
+| `QUO_FROM_NUMBER` | Quo sender phone number (E.164) | `+14078016575` |
+| `QUO_TO_NUMBER` | Phone for SMS alerts/recipient (E.164) | `+13176145209` |
 
 ### 9. Production Deployment
 
@@ -105,11 +112,12 @@ When deploying to production (Vercel, Netlify, etc.):
 
 **SMS not sending:**
 - Verify Quo API credentials are correct
-- Check that both `QUO_FROM_PHONE_NUMBER` (sender) and `NOTIFICATION_PHONE_NUMBER` (recipient) are set correctly
-- Ensure phone number format is correct (include country code with +, e.g., +15551234567)
-- Verify the `QUO_FROM_PHONE_NUMBER` matches the phone number registered in your Quo account
-- Ensure your Quo account has sufficient credits
-- Check Quo API logs for errors
+- Check that both `QUO_FROM_NUMBER` (sender) and `QUO_TO_NUMBER` (recipient) are set correctly
+- Ensure phone number format is in E.164 format (include country code with +, e.g., +14078016575)
+- Verify the `QUO_FROM_NUMBER` matches a phone number registered in your Quo account
+- Ensure your Quo account is active and has appropriate permissions
+- Check the API endpoint is correct: `https://api.openphone.com/v1/messages`
+- Check server logs for specific Quo API error messages
 
 **Form submission fails:**
 - Open browser console to check for JavaScript errors

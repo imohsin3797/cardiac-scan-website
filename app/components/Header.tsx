@@ -45,7 +45,7 @@ export default function Header() {
               Contact Now
             </Link>
             <Link
-              href="https://facebook.com"
+              href="https://www.facebook.com/people/Cardiac-Scan-Imaging/61586643510706/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-gray-200 transition-colors ml-2"
@@ -61,7 +61,7 @@ export default function Header() {
               </svg>
             </Link>
             <Link
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/cardiacscan-imaging"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-gray-200 transition-colors"

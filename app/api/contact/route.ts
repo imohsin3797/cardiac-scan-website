@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 
     // Email to forward form data to your static email
     const forwardEmail = {
-      to: process.env.ADMIN_EMAIL || '',
+      to: process.env.TO_EMAIL || '',
       from: process.env.SENDGRID_FROM_EMAIL || '',
       subject: `New Contact Form Submission: ${subject}`,
       html: `
@@ -86,35 +86,42 @@ export async function POST(request: NextRequest) {
       `,
     };
 
-    // Send both emails
-    await Promise.all([
-      sgMail.send(forwardEmail),
-      sgMail.send(confirmationEmail),
-    ]);
-
-    // Send SMS notification via Quo API
+    // Send SMS notification via Quo API (formerly OpenPhone)
     try {
-      const quoResponse = await fetch('https://www.quoapi.com/api/sms', {
+      const smsContent = `New contact form submission from Cardiac Scan Imaging:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nSubject: ${subject}\n\nMessage:\n${message}`;
+      
+      const quoResponse = await fetch('https://api.openphone.com/v1/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.QUO_API_KEY}`,
+          'Authorization': process.env.QUO_API_KEY || '',
         },
         body: JSON.stringify({
-          from: process.env.QUO_FROM_PHONE_NUMBER,
-          to: process.env.NOTIFICATION_PHONE_NUMBER,
-          message: `New contact form: ${name} - Subject: ${subject}`,
+          content: smsContent,
+          from: process.env.QUO_FROM_NUMBER,
+          to: [process.env.QUO_TO_NUMBER || ''],
+          setInboxStatus: 'done',
         }),
       });
 
       if (!quoResponse.ok) {
-        console.error('Quo API error:', await quoResponse.text());
+        const errorText = await quoResponse.text();
+        console.error('Quo API error:', errorText);
         // Don't fail the entire request if SMS fails
+      } else {
+        const quoData = await quoResponse.json();
+        console.log('SMS sent successfully:', quoData);
       }
     } catch (smsError) {
       console.error('SMS notification failed:', smsError);
       // Don't fail the entire request if SMS fails
     }
+
+    // Send both emails
+    await Promise.all([
+      sgMail.send(forwardEmail),
+      sgMail.send(confirmationEmail),
+    ]);
 
     return NextResponse.json(
       { success: true, message: 'Message sent successfully' },

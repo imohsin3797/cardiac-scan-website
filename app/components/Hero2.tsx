@@ -22,8 +22,8 @@ type Props = {
 
 export default function Hero2({
   imageSrc = "/hero-section3.jpg",
-  title = "Cardiac Scan Imaging",
-  subtitle = "Providing mobile ultrasound imaging services wherever you are",
+  title = "Providing mobile ultrasound imaging services wherever you are",
+  subtitle = "Supporting physician practices with on-site cardiac, vascular, and general ultrasound exams — delivered by experienced technologists and board-certified radiologist interpretation.",
   cardColor = "#F7F7F7",
 }: Props) {
   const sectionPX = { xs: 2, md: 6 };
@@ -103,11 +103,11 @@ export default function Hero2({
               component="h1"
               sx={{
                 color: "#fff",
-                fontWeight: 900,
+                fontWeight: 800,
                 letterSpacing: 0.2,
                 textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 4px 16px rgba(0,0,0,0.6), 0 6px 24px rgba(0,0,0,0.4)",
-                fontSize: { xs: 28, sm: 40, md: 56 },
-                lineHeight: { xs: 1.2, sm: 1.1 },
+                fontSize: { xs: 32, sm: 44, md: 52 },
+                lineHeight: { xs: 1.2, sm: 1.2 },
                 wordBreak: "break-word",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
@@ -121,11 +121,11 @@ export default function Hero2({
               sx={{
                 color: alpha("#fff", 0.95),
                 textShadow: "0 2px 12px rgba(0,0,0,0.45)",
-                fontSize: { xs: 14, sm: 16, md: 18 },
-                maxWidth: { xs: 300, sm: 500, md: 860 },
+                fontSize: { xs: 15, sm: 17, md: 19 },
+                maxWidth: { xs: 340, sm: 600, md: 900 },
                 mx: "auto",
-                mt: { xs: 1, sm: 1.5 },
-                lineHeight: 1.6,
+                mt: { xs: 2, sm: 2.5 },
+                lineHeight: 1.7,
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
                 transition: isVisible ? 'opacity 1000ms ease-out 200ms, transform 1000ms ease-out 200ms' : 'none',
@@ -149,48 +149,23 @@ export default function Hero2({
                 variant="contained"
                 href="/#contact-section"
                 sx={{
-                  backgroundColor: "#C41F3E",
+                  backgroundColor: "#0A5F5F",
                   color: "#fff",
-                  px: { xs: 4, sm: 5 },
-                  py: { xs: 1.25, sm: 1.5 },
-                  borderRadius: "9999px",
+                  px: { xs: 5, sm: 7 },
+                  py: { xs: 1.5, sm: 2 },
+                  borderRadius: "8px",
                   fontSize: { xs: 14, sm: 16 },
                   fontWeight: 600,
                   textTransform: "none",
-                  boxShadow: "0 2px 8px rgba(196, 31, 62, 0.3)",
+                  boxShadow: "0 2px 8px rgba(10, 95, 95, 0.3)",
                   "&:hover": {
-                    backgroundColor: "#a01731",
-                    boxShadow: "0 4px 12px rgba(196, 31, 62, 0.4)",
+                    backgroundColor: "#084848",
+                    boxShadow: "0 4px 12px rgba(10, 95, 95, 0.4)",
                   },
                   transition: "all 0.3s ease",
                 }}
               >
                 Partner With Us
-              </Button>
-              <Button
-                variant="outlined"
-                href="/services"
-                sx={{
-                  borderColor: "#fff",
-                  color: "#fff",
-                  borderWidth: 2,
-                  px: { xs: 4, sm: 5 },
-                  py: { xs: 1.25, sm: 1.5 },
-                  borderRadius: "9999px",
-                  fontSize: { xs: 14, sm: 16 },
-                  fontWeight: 600,
-                  textTransform: "none",
-                  backgroundColor: alpha("#fff", 0.1),
-                  backdropFilter: "blur(4px)",
-                  "&:hover": {
-                    borderColor: "#fff",
-                    backgroundColor: alpha("#fff", 0.2),
-                    borderWidth: 2,
-                  },
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Our Services
               </Button>
             </Box>
           </Box>

@@ -6,9 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/Twitter';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -28,7 +26,7 @@ export default function Footer() {
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '2fr 1fr 1fr 1fr' },
+            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '2fr 1fr 1fr' },
             gap: { xs: 4, md: 6 },
             mb: 6,
           }}
@@ -37,10 +35,10 @@ export default function Footer() {
           <Box>
             <Link href="/">
               <Image
-                src="/cardiac-scan-logo3.png"
+                src="/header-logo3.png"
                 alt="Cardiac Scan Imaging Logo"
-                width={180}
-                height={54}
+                width={210}
+                height={63}
                 className="h-auto mb-4"
               />
             </Link>
@@ -53,14 +51,14 @@ export default function Footer() {
                 mt: 2,
               }}
             >
-              Providing mobile ultrasound imaging services wherever you are
+              <strong>Supporting physician practices</strong> with on-site cardiac, vascular, and general ultrasound exams — delivered by <strong>experienced technologists</strong> and <strong>board-certified radiologist interpretation</strong>.
             </Typography>
 
             {/* Social Media Icons */}
             <Box sx={{ display: 'flex', gap: 1 }}>
               <IconButton
                 component="a"
-                href="https://facebook.com"
+                href="https://www.facebook.com/people/Cardiac-Scan-Imaging/61586643510706/"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
@@ -75,22 +73,7 @@ export default function Footer() {
               </IconButton>
               <IconButton
                 component="a"
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{
-                  color: '#fff',
-                  bgcolor: 'rgba(255, 255, 255, 0.1)',
-                  '&:hover': {
-                    bgcolor: '#C41F3E',
-                  },
-                }}
-              >
-                <InstagramIcon />
-              </IconButton>
-              <IconButton
-                component="a"
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/cardiacscan-imaging"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
@@ -102,21 +85,6 @@ export default function Footer() {
                 }}
               >
                 <LinkedInIcon />
-              </IconButton>
-              <IconButton
-                component="a"
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{
-                  color: '#fff',
-                  bgcolor: 'rgba(255, 255, 255, 0.1)',
-                  '&:hover': {
-                    bgcolor: '#C41F3E',
-                  },
-                }}
-              >
-                <TwitterIcon />
               </IconButton>
             </Box>
           </Box>
@@ -189,34 +157,6 @@ export default function Footer() {
             </Box>
           </Box>
 
-          {/* Services */}
-          <Box>
-            <Typography
-              sx={{
-                fontSize: 16,
-                fontWeight: 700,
-                mb: 2,
-                color: '#fff',
-              }}
-            >
-              Services
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-              <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                Echocardiograms
-              </Typography>
-              <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                Carotids
-              </Typography>
-              <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                Arterial – Upper and Lower
-              </Typography>
-              <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                Venous – Upper and Lower
-              </Typography>
-            </Box>
-          </Box>
-
           {/* Contact Info */}
           <Box>
             <Typography
@@ -231,15 +171,14 @@ export default function Footer() {
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)', lineHeight: 1.6 }}>
-                123 Medical Center Dr<br />
-                Suite 100<br />
-                City, State 12345
+                1317 Edgewater Dr, #3015<br />
+                Orlando, FL 32804
               </Typography>
               <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                (555) 123-4567
+                (407) 801-6575
               </Typography>
               <Typography sx={{ fontSize: 14, color: 'rgba(255, 255, 255, 0.8)' }}>
-                info@cardiacscan.com
+                info@cardiacscanimaging.com
               </Typography>
             </Box>
           </Box>
