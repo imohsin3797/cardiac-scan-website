@@ -249,27 +249,8 @@ export default function ServicesPage() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const section = document.getElementById('services-section');
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
+    // Set visible immediately for mobile reliability
+    setIsVisible(true);
   }, []);
 
   return (
@@ -446,8 +427,8 @@ export default function ServicesPage() {
           <Box
             sx={{
               display: 'grid',
-              gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
-              gap: 4,
+              gridTemplateColumns: { xs: '1fr', sm: '1fr', md: 'repeat(2, 1fr)' },
+              gap: { xs: 3, md: 4 },
             }}
           >
             {services.map((service, index) => {
@@ -479,7 +460,7 @@ export default function ServicesPage() {
                     sx={{
                       position: 'relative',
                       width: '100%',
-                      height: 240,
+                      height: { xs: 200, sm: 240 },
                       bgcolor: '#F7F7F7',
                     }}
                   >
@@ -494,7 +475,7 @@ export default function ServicesPage() {
                   {/* Content Section */}
                   <Box
                     sx={{
-                      p: 4,
+                      p: { xs: 2.5, sm: 3, md: 4 },
                       flex: 1,
                       display: 'flex',
                       flexDirection: 'column',
@@ -618,7 +599,7 @@ export default function ServicesPage() {
               lineHeight: 1.7,
             }}
           >
-            Bring high-quality diagnostic imaging directly to your practice. Contact us today to learn how we can support your clinic with reliable, convenient, and professional imaging services.
+            We bring high-quality diagnostic imaging directly to your practice. Contact us today to learn how we can support your clinic with reliable, convenient, and professional imaging services.
           </Typography>
           <Button
             component={Link}

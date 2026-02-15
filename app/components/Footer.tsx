@@ -21,13 +21,13 @@ export default function Footer() {
         pb: 3,
       }}
     >
-      <Box sx={{ maxWidth: 1200, mx: 'auto', px: { xs: 3, md: 6 } }}>
+      <Box sx={{ maxWidth: 1200, mx: 'auto', px: { xs: 2, md: 6 } }}>
         {/* Main Footer Content */}
         <Box
           sx={{
             display: 'grid',
             gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '2fr 1fr 1fr' },
-            gap: { xs: 4, md: 6 },
+            gap: { xs: 3, md: 6 },
             mb: 6,
           }}
         >
@@ -51,7 +51,7 @@ export default function Footer() {
                 mt: 2,
               }}
             >
-              <strong>Supporting physician practices</strong> with on-site cardiac, vascular, and general ultrasound exams — delivered by <strong>experienced technologists</strong> and <strong>board-certified radiologist interpretation</strong>.
+              <strong>Supporting physician practices</strong> with on-site cardiac, vascular, and general ultrasound exams — delivered by <strong>experienced technologists</strong> and with <strong>board-certified radiologist interpretation</strong>.
             </Typography>
 
             {/* Social Media Icons */}
@@ -142,7 +142,7 @@ export default function Footer() {
                 Services
               </Link>
               <Link
-                href="/contact"
+                href="/#contact-section"
                 style={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   textDecoration: 'none',

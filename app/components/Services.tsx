@@ -225,32 +225,32 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services-section" className="bg-[#F7F7F7] pt-12 pb-20">
-      <div className="container mx-auto px-6">
+    <section id="services-section" className="bg-[#F7F7F7] pt-8 pb-16 md:pt-12 md:pb-20">
+      <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <div
-          className={`text-center mb-16 ${
+          className={`text-center mb-12 md:mb-16 ${
             isVisible
               ? 'opacity-100 translate-y-0 transition-all duration-1000 ease-out'
               : 'opacity-0 translate-y-12'
           }`}
         >
-          <h2 className="text-4xl font-bold text-[#0A2F4A] mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-[#0A2F4A] mb-3 md:mb-4">
             Our Services
           </h2>
-          <p className="text-lg text-[#7A7A7A] max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-[#7A7A7A] max-w-2xl mx-auto">
             Comprehensive cardiac imaging solutions with state-of-the-art technology and expert care
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           {services.slice(0, 6).map((service, index) => {
             const IconComponent = service.icon;
             return (
             <div
               key={index}
-              className={`bg-white p-8 rounded-2xl shadow-sm border border-[#0A2F4A] hover:shadow-lg hover:-translate-y-2 hover:scale-105 ${
+              className={`bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-[#0A2F4A] hover:shadow-lg hover:-translate-y-2 hover:scale-105 ${
                 isVisible
                   ? 'opacity-100 translate-y-0 transition-all duration-1000 ease-out'
                   : 'opacity-0 translate-y-12'

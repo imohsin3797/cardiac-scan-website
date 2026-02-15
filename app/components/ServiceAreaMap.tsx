@@ -16,6 +16,16 @@ const serviceAreas = [
   { city: 'Davenport', zip: '33837', lat: 28.1614, lng: -81.6017 },
   { city: 'Altamonte Springs', zip: '32701', lat: 28.6611, lng: -81.3656 },
   { city: 'Ruskin', zip: '33570', lat: 27.7209, lng: -82.4332 },
+  { city: 'Winter Haven', zip: '33880', lat: 28.0339, lng: -81.7335 },
+  { city: 'Plant City', zip: '33566', lat: 28.0022, lng: -82.1131 },
+  { city: 'Zephyrhills', zip: '33542', lat: 28.2389, lng: -82.1819 },
+  { city: 'Lakeland', zip: '33805', lat: 28.0317, lng: -81.8915 },
+  { city: 'Riverview', zip: '33578', lat: 27.8656, lng: -82.2703 },
+  { city: 'Bradenton', zip: '34210', lat: 27.4988, lng: -82.5693 },
+  { city: 'Tavares', zip: '32778', lat: 28.8068, lng: -81.7778 },
+  { city: 'Sarasota', zip: '34243', lat: 27.3364, lng: -82.5326 },
+  { city: 'St Pete', zip: '33702', lat: 27.7725, lng: -82.6415 },
+  { city: 'Lake Wales', zip: '33853', lat: 27.9094, lng: -81.5788 },
 ];
 
 export default function ServiceAreaMap() {
@@ -76,7 +86,7 @@ export default function ServiceAreaMap() {
       sx={{
         width: '100%',
         height: '100%',
-        minHeight: { xs: 280, sm: 320 },
+        minHeight: { xs: 400, sm: 500 },
         '& .leaflet-control-attribution': {
           fontSize: '9px',
           opacity: 0.7,

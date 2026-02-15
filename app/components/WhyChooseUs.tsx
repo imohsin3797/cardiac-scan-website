@@ -66,11 +66,11 @@ export default function WhyChooseUs() {
         py: { xs: 6, md: 10 }
       }}
     >
-      <Box sx={{ maxWidth: 1200, mx: 'auto', px: { xs: 3, md: 6 } }}>
+      <Box sx={{ maxWidth: 1200, mx: 'auto', px: { xs: 2, md: 6 } }}>
         {/* Section Title */}
         <Box
           sx={{
-            mb: 6,
+            mb: { xs: 4, md: 6 },
             textAlign: 'center',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
@@ -80,7 +80,7 @@ export default function WhyChooseUs() {
           <Typography
             variant="h2"
             sx={{
-              fontSize: { xs: 32, sm: 40, md: 48 },
+              fontSize: { xs: 28, sm: 40, md: 48 },
               fontWeight: 800,
               color: '#0A2F4A',
               mb: 2,

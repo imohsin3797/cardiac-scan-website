@@ -19,7 +19,7 @@ const ServiceAreaMap = dynamic(() => import('./ServiceAreaMap'), {
     <Box
       sx={{
         width: '100%',
-        height: { xs: 280, sm: 320 },
+        height: { xs: 400, sm: 500 },
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -31,19 +31,6 @@ const ServiceAreaMap = dynamic(() => import('./ServiceAreaMap'), {
     </Box>
   ),
 });
-
-const serviceAreas = [
-  { city: 'Orlando', zip: '32828' },
-  { city: 'Tampa', zip: '33647' },
-  { city: 'St. Petersburg', zip: '33709' },
-  { city: 'Kissimmee', zip: '34741' },
-  { city: 'Brandon', zip: '33511' },
-  { city: 'Winter Garden', zip: '34787' },
-  { city: 'Valrico', zip: '33594' },
-  { city: 'Davenport', zip: '33837' },
-  { city: 'Altamonte Springs', zip: '32701' },
-  { city: 'Ruskin', zip: '33570' },
-];
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -419,82 +406,10 @@ export default function ContactSection() {
                 overflow: 'hidden',
                 border: '3px solid #0A2F4A',
                 mb: 3,
-                height: { xs: 320, sm: 380 },
+                height: { xs: 400, sm: 500 },
               }}
             >
               <ServiceAreaMap />
-            </Box>
-
-            {/* Service Areas List */}
-            <Box
-              sx={{
-                bgcolor: '#ffffff',
-                borderRadius: '16px',
-                border: '2px solid',
-                borderColor: alpha('#0A2F4A', 0.1),
-                p: 2.5,
-                mb: 2,
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: { xs: 13, sm: 14 },
-                  fontWeight: 700,
-                  color: '#0A2F4A',
-                  mb: 1.5,
-                  textTransform: 'uppercase',
-                  letterSpacing: 0.5,
-                }}
-              >
-                Areas We Serve
-              </Typography>
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr 1fr' },
-                  gap: 1,
-                }}
-              >
-                {serviceAreas.map((area, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1,
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: '50%',
-                        bgcolor: '#C41F3E',
-                        flexShrink: 0,
-                      }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: { xs: 12, sm: 13 },
-                        color: '#0A2F4A',
-                        fontWeight: 500,
-                      }}
-                    >
-                      {area.city}
-                      <Typography
-                        component="span"
-                        sx={{
-                          fontSize: { xs: 10, sm: 11 },
-                          color: '#7A7A7A',
-                          ml: 0.5,
-                        }}
-                      >
-                        ({area.zip})
-                      </Typography>
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
             </Box>
 
             {/* Message below map */}

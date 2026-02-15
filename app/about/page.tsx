@@ -208,6 +208,41 @@ export default function AboutPage() {
         </Box>
       </Box>
 
+      {/* Mission Statement Section */}
+      <Box
+        sx={{
+          bgcolor: '#0A2F4A',
+          py: { xs: 8, md: 12 },
+        }}
+      >
+        <Box sx={{ maxWidth: 900, mx: 'auto', px: { xs: 3, md: 6 } }}>
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: { xs: 32, sm: 42, md: 48 },
+                fontWeight: 800,
+                color: '#fff',
+                mb: 4,
+                lineHeight: 1.2,
+              }}
+            >
+              Mission Statement
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { xs: 16, sm: 18 },
+                color: 'rgba(255, 255, 255, 0.95)',
+                lineHeight: 1.8,
+                textAlign: 'center',
+              }}
+            >
+              We are a purpose-driven organization. Our main goal is to deliver superior care and service. We seek to accomplish this by listening to our customers, understanding their needs, and providing appropriate solutions through a team focused approach.
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+
       {/* Our Values Section */}
       <Box
         id="values-section"
@@ -314,108 +349,6 @@ export default function AboutPage() {
                 </Paper>
               );
             })}
-          </Box>
-        </Box>
-      </Box>
-
-      {/* Careers Section */}
-      <Box
-        id="careers-section"
-        sx={{
-          bgcolor: '#0A2F4A',
-          py: { xs: 8, md: 12 },
-        }}
-      >
-        <Box sx={{ maxWidth: 900, mx: 'auto', px: { xs: 3, md: 6 } }}>
-          <Box
-            sx={{
-              textAlign: 'center',
-              opacity: careersVisible ? 1 : 0,
-              transform: careersVisible ? 'translateY(0)' : 'translateY(24px)',
-              transition: 'opacity 1000ms ease-out, transform 1000ms ease-out',
-            }}
-          >
-            <Typography
-              variant="h2"
-              sx={{
-                fontSize: { xs: 32, sm: 42, md: 48 },
-                fontWeight: 800,
-                color: '#fff',
-                mb: 3,
-                lineHeight: 1.2,
-              }}
-            >
-              Careers
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: { xs: 20, sm: 24 },
-                fontWeight: 600,
-                color: '#fff',
-                mb: 3,
-              }}
-            >
-              Join Our Growing Team!
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: { xs: 15, sm: 16 },
-                color: 'rgba(255, 255, 255, 0.9)',
-                lineHeight: 1.8,
-                mb: 2,
-              }}
-            >
-              As a family-run business, we treat our staff like family. We balance genuine care for our team members with a culture of collaboration, learning, and empowerment.
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: { xs: 15, sm: 16 },
-                color: 'rgba(255, 255, 255, 0.9)',
-                lineHeight: 1.8,
-                mb: 4,
-              }}
-            >
-              If you're interested in joining our team, please use the contact form to send us a note. You may also call or text us at{' '}
-              <Box
-                component="a"
-                href="tel:407-801-6575"
-                sx={{
-                  color: '#fff',
-                  fontWeight: 600,
-                  textDecoration: 'underline',
-                  '&:hover': {
-                    color: alpha('#fff', 0.8),
-                  },
-                }}
-              >
-                407-801-6575
-              </Box>
-              . We'd love to hear from you!
-            </Typography>
-            <Box
-              component="a"
-              href="/#contact-section"
-              sx={{
-                display: 'inline-block',
-                bgcolor: '#C41F3E',
-                color: '#fff',
-                px: { xs: 5, sm: 6 },
-                py: { xs: 1.75, sm: 2 },
-                borderRadius: '9999px',
-                fontSize: { xs: 15, sm: 16 },
-                fontWeight: 700,
-                textDecoration: 'none',
-                boxShadow: '0 4px 12px rgba(196, 31, 62, 0.3)',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  bgcolor: '#a01731',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 6px 16px rgba(196, 31, 62, 0.4)',
-                },
-              }}
-            >
-              Contact Us
-            </Box>
           </Box>
         </Box>
       </Box>
@@ -547,6 +480,108 @@ export default function AboutPage() {
             >
               Together, our team combines technical expertise and patient-focused care to ensure every scan meets the highest standards, providing clear, reliable results that support accurate diagnoses and effective treatment plans.
             </Typography>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Careers Section */}
+      <Box
+        id="careers-section"
+        sx={{
+          bgcolor: '#0A2F4A',
+          py: { xs: 8, md: 12 },
+        }}
+      >
+        <Box sx={{ maxWidth: 900, mx: 'auto', px: { xs: 3, md: 6 } }}>
+          <Box
+            sx={{
+              textAlign: 'center',
+              opacity: careersVisible ? 1 : 0,
+              transform: careersVisible ? 'translateY(0)' : 'translateY(24px)',
+              transition: 'opacity 1000ms ease-out, transform 1000ms ease-out',
+            }}
+          >
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: { xs: 32, sm: 42, md: 48 },
+                fontWeight: 800,
+                color: '#fff',
+                mb: 3,
+                lineHeight: 1.2,
+              }}
+            >
+              Careers
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { xs: 20, sm: 24 },
+                fontWeight: 600,
+                color: '#fff',
+                mb: 3,
+              }}
+            >
+              Join Our Growing Team!
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { xs: 15, sm: 16 },
+                color: 'rgba(255, 255, 255, 0.9)',
+                lineHeight: 1.8,
+                mb: 2,
+              }}
+            >
+              As a family-run business, we treat our staff like family. We balance genuine care for our team members with a culture of collaboration, learning, and empowerment.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { xs: 15, sm: 16 },
+                color: 'rgba(255, 255, 255, 0.9)',
+                lineHeight: 1.8,
+                mb: 4,
+              }}
+            >
+              If you're interested in joining our team, please use the contact form to send us a note. You may also call or text us at{' '}
+              <Box
+                component="a"
+                href="tel:407-801-6575"
+                sx={{
+                  color: '#fff',
+                  fontWeight: 600,
+                  textDecoration: 'underline',
+                  '&:hover': {
+                    color: alpha('#fff', 0.8),
+                  },
+                }}
+              >
+                407-801-6575
+              </Box>
+              . We'd love to hear from you!
+            </Typography>
+            <Box
+              component="a"
+              href="/#contact-section"
+              sx={{
+                display: 'inline-block',
+                bgcolor: '#C41F3E',
+                color: '#fff',
+                px: { xs: 5, sm: 6 },
+                py: { xs: 1.75, sm: 2 },
+                borderRadius: '9999px',
+                fontSize: { xs: 15, sm: 16 },
+                fontWeight: 700,
+                textDecoration: 'none',
+                boxShadow: '0 4px 12px rgba(196, 31, 62, 0.3)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  bgcolor: '#a01731',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 6px 16px rgba(196, 31, 62, 0.4)',
+                },
+              }}
+            >
+              Contact Us
+            </Box>
           </Box>
         </Box>
       </Box>

@@ -23,7 +23,7 @@ type Props = {
 export default function Hero2({
   imageSrc = "/hero-section3.jpg",
   title = "Providing mobile ultrasound imaging services wherever you are",
-  subtitle = "Supporting physician practices with on-site cardiac, vascular, and general ultrasound exams — delivered by experienced technologists and board-certified radiologist interpretation.",
+  subtitle = "Supporting physician practices with on-site cardiac, vascular, and general ultrasound exams — delivered by experienced technologists and with board-certified radiologist interpretation.",
   cardColor = "#F7F7F7",
 }: Props) {
   const sectionPX = { xs: 2, md: 6 };
