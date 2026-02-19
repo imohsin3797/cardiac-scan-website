@@ -37,8 +37,8 @@ export default function Footer() {
               <Image
                 src="/header-logo3.png"
                 alt="Cardiac Scan Imaging Logo"
-                width={210}
-                height={63}
+                width={240}
+                height={72}
                 className="h-auto mb-4"
               />
             </Link>

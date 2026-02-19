@@ -63,10 +63,10 @@ export default function Header() {
               <Image
                 src="/header-logo3.png"
                 alt="Cardiac Scan Imaging Logo"
-                width={160}
-                height={50}
+                width={190}
+                height={59}
                 priority
-                className="h-auto w-auto md:w-[200px]"
+                className="h-auto w-auto md:w-[230px]"
               />
             </Link>
           </div>
