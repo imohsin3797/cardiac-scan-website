@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
               <p style="margin: 0; color: #7A7A7A; line-height: 1.6;">${message}</p>
             </div>
             <p style="color: #7A7A7A; line-height: 1.6; margin-bottom: 20px;">
-              If you have any urgent matters, please feel free to call us directly at <strong style="color: #C41F3E;">(555) 123-4567</strong>.
+              If you have any urgent matters, please feel free to call us directly at <strong style="color: #C41F3E;">(407) 801-6575</strong>.
             </p>
             <p style="color: #7A7A7A; line-height: 1.6;">
               Best regards,<br/>
@@ -78,8 +78,8 @@ export async function POST(request: NextRequest) {
           <div style="background-color: #0A2F4A; padding: 20px; text-align: center;">
             <p style="color: #ffffff; margin: 0 0 10px 0; font-size: 14px;">CardiacScan Imaging</p>
             <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 12px;">
-              123 Medical Center Dr, Suite 100 | City, State 12345<br/>
-              Phone: (555) 123-4567 | Email: info@cardiacscan.com
+              1317 Edgewater Dr, #3015, Orlando, FL 32804<br/>
+              Phone: (407) 801-6575 | Email: info@cardiacscanimaging.com
             </p>
           </div>
         </div>
