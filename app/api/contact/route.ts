@@ -1,13 +1,49 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sgMail from '@sendgrid/mail';
+import { Resend } from 'resend';
 
-// Initialize SendGrid
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
+// Confirms the Cloudflare Turnstile token came from a real visitor solving the widget
+async function verifyTurnstile(token: string, ip: string | null) {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) {
+    console.error('Missing TURNSTILE_SECRET_KEY');
+    return false;
+  }
+
+  const body = new URLSearchParams({ secret, response: token });
+  if (ip) body.append('remoteip', ip);
+
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body,
+    });
+    const data = await res.json();
+    if (!data.success) {
+      console.error('Turnstile verification failed:', data['error-codes']);
+    }
+    return data.success === true;
+  } catch (error) {
+    console.error('Turnstile verification error:', error);
+    return false;
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
+    const { RESEND_API_KEY, RESEND_FROM_EMAIL, TO_EMAIL } = process.env;
+    if (!RESEND_API_KEY || !RESEND_FROM_EMAIL || !TO_EMAIL) {
+      console.error('Missing RESEND_API_KEY, RESEND_FROM_EMAIL, or TO_EMAIL');
+      return NextResponse.json(
+        { error: 'Failed to send message. Please try again.' },
+        { status: 500 }
+      );
+    }
+
+    // Initialize Resend per request so a missing key doesn't break the build
+    const resend = new Resend(RESEND_API_KEY);
+
     const body = await request.json();
-    const { name, email, subject, phone, message } = body;
+    const { name, email, subject, phone, message, turnstileToken } = body;
 
     // Validate required fields
     if (!name || !email || !subject || !phone || !message) {
@@ -17,10 +53,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Block bots before any SMS or email is sent
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? null;
+    if (!turnstileToken || !(await verifyTurnstile(turnstileToken, ip))) {
+      return NextResponse.json(
+        { error: 'Human verification failed. Please complete the verification and try again.' },
+        { status: 403 }
+      );
+    }
+
     // Email to forward form data to your static email
     const forwardEmail = {
-      to: process.env.TO_EMAIL || '',
-      from: process.env.SENDGRID_FROM_EMAIL || '',
+      to: TO_EMAIL,
+      from: RESEND_FROM_EMAIL,
+      replyTo: email,
       subject: `New Contact Form Submission: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -50,7 +96,7 @@ export async function POST(request: NextRequest) {
     // Confirmation email to the user
     const confirmationEmail = {
       to: email,
-      from: process.env.SENDGRID_FROM_EMAIL || '',
+      from: RESEND_FROM_EMAIL,
       subject: 'We Received Your Message - CardiacScan Imaging',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -117,11 +163,20 @@ export async function POST(request: NextRequest) {
       // Don't fail the entire request if SMS fails
     }
 
-    // Send both emails
-    await Promise.all([
-      sgMail.send(forwardEmail),
-      sgMail.send(confirmationEmail),
+    // Send both emails (Resend returns errors instead of throwing)
+    const results = await Promise.all([
+      resend.emails.send(forwardEmail),
+      resend.emails.send(confirmationEmail),
     ]);
+
+    const failed = results.filter((result) => result.error);
+    if (failed.length > 0) {
+      failed.forEach((result) => console.error('Resend error:', result.error));
+      return NextResponse.json(
+        { error: 'Failed to send message. Please try again.' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { success: true, message: 'Message sent successfully' },

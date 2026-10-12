@@ -4,48 +4,48 @@ The contact form has been successfully implemented with the following features:
 - Sends confirmation email to the user
 - Forwards form submission to your admin email
 - Sends SMS notification via Quo API
+- Blocks bots with Cloudflare Turnstile human verification
 
 ## Setup Instructions
 
 ### 1. Install Dependencies (Already Done)
-The required package `@sendgrid/mail` has been added to your dependencies.
+The required package `resend` has been added to your dependencies.
 
 ### 2. Configure Environment Variables
 
 Create a `.env.local` file in the root directory of your project with the following variables:
 
 ```bash
-# SendGrid Configuration
-SENDGRID_API_KEY=your_sendgrid_api_key_here
-SENDGRID_FROM_EMAIL=noreply@yourdomain.com
+# Resend Configuration
+RESEND_API_KEY=re_your_resend_api_key_here
+RESEND_FROM_EMAIL=CardiacScan Imaging <noreply@yourdomain.com>
 TO_EMAIL=your_admin_email@example.com
 
 # Quo API Configuration (formerly OpenPhone)
 QUO_API_KEY=your_quo_api_key_here
 QUO_FROM_NUMBER=+14078016575
 QUO_TO_NUMBER=+13176145209
+
+# Cloudflare Turnstile (human verification)
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=your_turnstile_site_key_here
+TURNSTILE_SECRET_KEY=your_turnstile_secret_key_here
 ```
 
-### 3. Get SendGrid API Key
+### 3. Get Resend API Key
 
-1. Go to https://sendgrid.com and create an account (free tier available)
-2. Navigate to Settings → API Keys
-3. Click "Create API Key"
-4. Give it a name (e.g., "CardiacScan Contact Form")
-5. Select "Full Access" or at minimum "Mail Send" permissions
-6. Copy the API key and paste it as `SENDGRID_API_KEY` in your `.env.local` file
+1. Go to https://resend.com and create an account (free tier: 3,000 emails/month, 100/day)
+2. Navigate to API Keys → Create API Key
+3. Give it a name (e.g., "CardiacScan Contact Form") with "Sending access" permission
+4. Copy the key (starts with `re_`) and paste it as `RESEND_API_KEY` in your `.env.local` file
 
-### 4. Verify Sender Email in SendGrid
+### 4. Verify Your Sending Domain in Resend
 
-**IMPORTANT:** SendGrid requires you to verify the sender email address.
+**IMPORTANT:** Until a domain is verified, Resend only lets you send from `onboarding@resend.dev` to the email address on your Resend account. The confirmation email to form submitters will fail until you verify a domain.
 
-1. Go to Settings → Sender Authentication in your SendGrid dashboard
-2. Click "Verify a Single Sender"
-3. Fill in your details with the email you want to use as `SENDGRID_FROM_EMAIL`
-4. SendGrid will send a verification email - click the link to verify
-5. Once verified, update `SENDGRID_FROM_EMAIL` in `.env.local` with this email
-
-**Note:** For production, you should set up domain authentication for better deliverability.
+1. Go to Domains → Add Domain in the Resend dashboard (a subdomain like `mail.cardiacscanimaging.com` is recommended)
+2. Add the DNS records Resend shows you (SPF/MX and DKIM) at your DNS provider
+3. Click Verify and wait for the status to show "Verified"
+4. Set `RESEND_FROM_EMAIL` to an address on that domain, e.g. `CardiacScan Imaging <noreply@mail.cardiacscanimaging.com>`
 
 ### 5. Get Quo API Credentials
 
@@ -63,6 +63,19 @@ Quo (formerly OpenPhone) provides SMS messaging capabilities through their API.
 - The `QUO_FROM_NUMBER` must be a phone number registered in your Quo account
 - Quo API uses simple Bearer token authentication (no "Bearer" prefix needed in header)
 - Successfully sent messages will have a status of "queued" initially
+
+### 5b. Set Up Cloudflare Turnstile (Human Verification)
+
+The form shows a Turnstile widget above the Send button. The button stays disabled until the visitor passes, and the server re-checks the token with Cloudflare before sending any SMS or email.
+
+1. Go to https://dash.cloudflare.com (free account) → Turnstile → Add widget
+2. Add hostnames `cardiacscanimaging.com` and `www.cardiacscanimaging.com` (add `localhost` too if you want to test real keys locally)
+3. Widget mode: "Managed"
+4. Copy the Site Key into `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and the Secret Key into `TURNSTILE_SECRET_KEY`
+
+For local testing you can use Cloudflare's always-pass test keys: site key `1x00000000000000000000AA`, secret `1x0000000000000000000000000000000AA`. These show a red "For testing only" banner and must not be used in production.
+
+**Note:** `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is baked in at build time, so redeploy after changing it.
 
 ### 6. Update Admin Email
 
@@ -86,12 +99,14 @@ Set `TO_EMAIL` in your `.env.local` file to the email address where you want to 
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `SENDGRID_API_KEY` | Your SendGrid API key | `SG.xxxxxxxxxx` |
-| `SENDGRID_FROM_EMAIL` | Verified sender email | `noreply@cardiacscan.com` |
+| `RESEND_API_KEY` | Your Resend API key | `re_xxxxxxxxxx` |
+| `RESEND_FROM_EMAIL` | Sender on a Resend-verified domain | `noreply@mail.cardiacscanimaging.com` |
 | `TO_EMAIL` | Where form submissions are sent | `admin@cardiacscan.com` |
 | `QUO_API_KEY` | Your Quo API key | `5XBy1SutLn9FT8JzXeadyMzxjj2Lxj59` |
 | `QUO_FROM_NUMBER` | Quo sender phone number (E.164) | `+14078016575` |
 | `QUO_TO_NUMBER` | Phone for SMS alerts/recipient (E.164) | `+13176145209` |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Turnstile site key (public) | `0x4AAAAAAA...` |
+| `TURNSTILE_SECRET_KEY` | Turnstile secret key | `0x4AAAAAAA...` |
 
 ### 9. Production Deployment
 
@@ -99,16 +114,16 @@ When deploying to production (Vercel, Netlify, etc.):
 
 1. Add all environment variables to your hosting platform's environment settings
 2. Make sure to use production API keys (not development/test keys)
-3. Verify your domain with SendGrid for better email deliverability
+3. Make sure your sending domain is verified in Resend
 4. Test the form after deployment to ensure everything works
 
 ### Troubleshooting
 
 **Emails not sending:**
-- Verify your SendGrid API key is correct
-- Make sure the sender email is verified in SendGrid
-- Check SendGrid activity logs for errors
-- Ensure you haven't exceeded SendGrid's free tier limits (100 emails/day)
+- Verify your Resend API key is correct
+- Make sure `RESEND_FROM_EMAIL` is on a domain verified in Resend (a 403 "only send testing emails to your own email address" means it isn't)
+- Check the Emails and Logs pages in the Resend dashboard for errors
+- Ensure you haven't exceeded Resend's free tier limits (100 emails/day, 3,000/month — each submission sends 2)
 
 **SMS not sending:**
 - Verify Quo API credentials are correct
@@ -118,6 +133,11 @@ When deploying to production (Vercel, Netlify, etc.):
 - Ensure your Quo account is active and has appropriate permissions
 - Check the API endpoint is correct: `https://api.openphone.com/v1/messages`
 - Check server logs for specific Quo API error messages
+
+**"Human verification failed" error / Send button stays disabled:**
+- Check `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` are a matching pair from the same widget
+- Make sure the site's hostname is listed in the Turnstile widget settings
+- Check server logs for `Turnstile verification failed:` error codes
 
 **Form submission fails:**
 - Open browser console to check for JavaScript errors
@@ -129,7 +149,7 @@ When deploying to production (Vercel, Netlify, etc.):
 
 - `app/api/contact/route.ts` - API endpoint handling form submissions
 - `app/components/ContactSection.tsx` - Updated with submission logic
-- `package.json` - Added @sendgrid/mail dependency
+- `package.json` - Added resend and @marsidev/react-turnstile dependencies
 - `.env.example` - Example environment variables
 - `CONTACT_FORM_SETUP.md` - This setup guide
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -12,6 +12,7 @@ import { alpha } from '@mui/material/styles';
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
 
 const ServiceAreaMap = dynamic(() => import('./ServiceAreaMap'), {
   ssr: false,
@@ -46,6 +47,8 @@ export default function ContactSection() {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const turnstileRef = useRef<TurnstileInstance>(undefined);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -89,7 +92,7 @@ export default function ContactSection() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, turnstileToken }),
       });
 
       const data = await response.json();
@@ -120,6 +123,9 @@ export default function ContactSection() {
       });
     } finally {
       setIsSubmitting(false);
+      // Turnstile tokens are single-use, so get a fresh one for the next submission
+      setTurnstileToken('');
+      turnstileRef.current?.reset();
     }
   };
 
@@ -342,11 +348,20 @@ export default function ContactSection() {
                 }}
               />
 
+              <Turnstile
+                ref={turnstileRef}
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
+                options={{ theme: 'light', size: 'flexible' }}
+                onSuccess={setTurnstileToken}
+                onExpire={() => setTurnstileToken('')}
+                onError={() => setTurnstileToken('')}
+              />
+
               <Button
                 type="submit"
                 variant="contained"
                 size="large"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !turnstileToken}
                 sx={{
                   bgcolor: '#C41F3E',
                   color: '#fff',
