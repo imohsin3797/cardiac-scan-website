@@ -48,10 +48,10 @@ export default function ServiceAreaMap() {
 
     mapInstanceRef.current = map;
 
-    // Use a clean map tile style
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: 'abcd',
+    // OpenStreetMap tiles (no API key required; CARTO basemaps now need one),
+    // desaturated via the tile pane styles below for a clean, light look
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19,
     }).addTo(map);
 
@@ -87,6 +87,9 @@ export default function ServiceAreaMap() {
         width: '100%',
         height: '100%',
         minHeight: { xs: 400, sm: 500 },
+        '& .leaflet-tile-pane': {
+          filter: 'grayscale(1) brightness(1.08) contrast(0.9)',
+        },
         '& .leaflet-control-attribution': {
           fontSize: '9px',
           opacity: 0.7,
